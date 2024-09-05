@@ -51,6 +51,10 @@ when isMainModule:
   doAssert a == [0, 200, 77, 53]
 ```
 
+Implements: `+!`, `-!`, `+!=`, `-!=`, `==!`, `!=!`
+
+I chose `!` as the annotation arbitrarily to not interfere with `%` native annotation for unsigned arithmetic. In hindsight, it can visually be confusing as a `not` operation of sorts.
+
 ## Bitops
 
 Bitwise op arithmetic is also available as a separate import to prevent misuse:

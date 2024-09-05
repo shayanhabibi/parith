@@ -66,3 +66,9 @@ suite "basic":
     check p[1'u8].i == 500
     p[1'u32].i = 10
     check a[2].i == 10
+
+  test "pointer equality":
+    p = addr(a[0])
+    check p ==! cast[uint](a[0].addr())
+    check p !=! cast[uint](a[1].addr())
+    check p !=! 0

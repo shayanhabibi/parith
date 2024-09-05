@@ -39,3 +39,11 @@ proc `-!=`*[S: SomeInteger](p: var pointer, offset: S) =
   ## Decrements pointer `p` *in place* by `offset` that jumps memory
   ## in increments of single bytes.
   p = p -! offset
+
+proc `==!`*[T: ptr | pointer; S: SomeInteger](x: T, y: S): bool =
+  ## Compares pointer against an integer for bitwise equality.
+  return cast[uint](x) == uint(y)
+
+proc `!=!`*[T: ptr | pointer; S: SomeInteger](x: T, y: S): bool =
+  ## Compares pointer against an integer for bitwise inequality.
+  return cast[uint](x) != uint(y)
