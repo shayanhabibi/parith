@@ -28,7 +28,7 @@ when isMainModule:
 
   p +!= 1                                          # p is now pointing to a[1]
   p[] = 100                                       # p[] is accessing the contents of a[1]
-  echo &"after p += 1; p[] = 100   : a = {a}"
+  echo &"after p +!= 1; p[] = 100   : a = {a}"
 
   p[0] = 200                                      # .. so does p[0]
   echo &"after p[0] = 200          : a = {a}"
@@ -41,7 +41,7 @@ when isMainModule:
 
   p +!= 2                                          # p is now pointing to a[3]
   p[-1] += 77                                     # p[-1] is accessing the contents of a[2]
-  echo &"after p += 2; p[-1] += 77 : a = {a}"
+  echo &"after p +!= 2; p[-1] += 77 : a = {a}"
 
   echo &"a[0] = p[-3] = {p[-3]}"
   echo &"a[1] = p[-2] = {p[-2]}"
@@ -59,7 +59,7 @@ Bitwise op arithmetic is also available as a separate import to prevent misuse:
 
 ## Pointer String Formatting
 
-String formatting for pointers is available to quickly convert to
-quickly convert to string in hex (`$!`) or bin (`$%`) format
+String formatting for pointers is available to quickly convert
+pointers to string in hex (`$!`) or bin (`$%`) format
 
 `import parith/ptrformat`
