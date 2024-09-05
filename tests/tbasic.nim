@@ -1,5 +1,5 @@
 import std/[unittest]
-import ptr_math
+import parith
 
 suite "basic":
   setup:
@@ -16,12 +16,12 @@ suite "basic":
       p = addr(a[0])
 
   test "incr ptr":
-    p = p + 1
+    p = p +! 1
     check p[0].i == 300
 
   test "decr ptr":
     p = addr(a[2])
-    p = p - 1
+    p = p -! 1
     check p[0].f == 4.5
 
   test "retrieve value `[]`":
@@ -37,14 +37,14 @@ suite "basic":
     check a[2] == MyObject(i: 11, f: 2.2, b: false)
 
   test "inplace incr ptr":
-    p += 2
+    p +!= 2
     check p[0].i == 500
     p[0].f = 7.89
     check a[2].f == 7.89
 
   test "inplace decr ptr":
     p = addr(a[2])
-    p -= 1
+    p -!= 1
     check p[-1].i == 100
     p[1].f = 456.789
     check a[2] == MyObject(i: 500, f: 456.789, b: true)
@@ -62,7 +62,7 @@ suite "basic":
 
   test "unsigned integer offset":
     p = addr(a[0])
-    p += 1'u
+    p +!= 1'u
     check p[1'u8].i == 500
     p[1'u32].i = 10
     check a[2].i == 10

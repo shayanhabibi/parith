@@ -1,7 +1,7 @@
 # Package
 
 version       = "0.6.0"
-author        = "Kaushal Modi"
+author        = "Shayan Habibi; Kaushal Modi"
 description   = "Pointer arithmetic library"
 license       = "MIT"
 srcDir        = "src"

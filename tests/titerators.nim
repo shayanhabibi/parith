@@ -1,5 +1,5 @@
 import std/[unittest]
-import ptr_math
+import parith
 
 suite "iterators":
   setup:
@@ -16,14 +16,14 @@ suite "iterators":
       p = addr(a[0])
 
   test "items ptr, from start excluding end":
-    var pend = p + a.len
+    var pend = p +! a.len
     var i = 0
     for it in items(p, pend):
       check it.i == a[i].i
       inc i
-  
+
   test "mitems ptr, from start excluding end":
-    var pend = p + a.len
+    var pend = p +! a.len
     for it in mitems(p, pend):
       inc it.i
     check a[2].i == 501
@@ -44,8 +44,8 @@ suite "iterators":
     for it in items(u[], a.len):
       check it.i == a[i].i
       inc i
-  
- 
+
+
   test "mitems UncheckedArray with length":
     var u = cast[ptr UncheckedArray[MyObject]](a[0].addr)
     for it in mitems(u[], a.len):
@@ -64,7 +64,7 @@ suite "iterators":
     for it in mitems(p, a.len.uint):
       inc it.i
     check a[2].i == 502
-  
+
   test "pairs UncheckedArray[T] | ptr T with len":
     for i, it in pairs(p, a.len):
       check it.i == a[i].i
@@ -90,37 +90,3 @@ suite "iterators":
 
     for i, it in mpairs(p, a.len.uint):
       check a[i] == it
-
-  test "rows":
-    var l = 3
-    var ar = [100, 300, 500]
-    var b = ['a', 'e', 'i']
-    var c = [1.1, 2.2, 3.3]
-    var pa = ar[0].addr
-    var pb = b[0].addr
-    var pc = cast[ptr UncheckedArray[float]](c[0].addr)
-
-    var tuples:seq[(int, int, char, float)]
-    for i, ta, tb, tc in rows(pa, pb, pc[], l):
-      tuples.add (i, ta, tb, tc)
-
-    check tuples[^1][0] == l-1
-    check tuples[^1][3] == 3.3
-
-  test "mrows":
-    var l = 3
-    var ar = [100, 300, 500]
-    var b = ['a', 'e', 'i']
-    var c = [1.1, 2.2, 3.3]
-    var pa = ar[0].addr
-    var pb = b[0].addr
-    var pc = cast[ptr UncheckedArray[float]](c[0].addr)
-
-    var tuples:seq[(int, int, char, float)]
-    for i, ta, tb, tc in mrows(pa, pb, pc[], l):
-      inc ta
-      tuples.add (i, ta, tb, tc)
-
-    doAssert(tuples[^1][0] == l-1)
-    doAssert(tuples[^1][3] == 3.3)
-    doAssert(tuples[0][1] == 101)
