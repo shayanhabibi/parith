@@ -1,11 +1,14 @@
 # Pointer Arithmetic in Nim
 
 
-This module implements basic pointer arithmetic functionality.
+This module implements basic pointer arithmetic and other pointer
+utilities for personal use.
 
 ## Credit
-Most of the code in this library is from [[https://forum.nim-lang.org/t/1188#7366][this code snippet]] authored by
-Nim Forum user /Jehan/.
+
+Original library by *Kaushal Modi* who credited most of the
+code in the library to [this code snippet](https://forum.nim-lang.org/t/1188#7366) authored by
+Nim Forum user *Jehan*.
 
 ## Usage
 
@@ -47,3 +50,16 @@ when isMainModule:
 
   doAssert a == [0, 200, 77, 53]
 ```
+
+## Bitops
+
+Bitwise op arithmetic is also available as a separate import to prevent misuse:
+
+`import parith/bitops`
+
+## Pointer String Formatting
+
+String formatting for pointers is available to quickly convert to
+quickly convert to string in hex (`$!`) or bin (`$%`) format
+
+`import parith/ptrformat`

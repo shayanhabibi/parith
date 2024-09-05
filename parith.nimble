@@ -1,8 +1,8 @@
 # Package
 
-version       = "0.6.0"
-author        = "Shayan Habibi; Kaushal Modi"
-description   = "Pointer arithmetic library"
+version       = "0.1.0"
+author        = "Shayan Habibi"
+description   = "Pointer arithmetic library for NimSkull"
 license       = "MIT"
 srcDir        = "src"
 
